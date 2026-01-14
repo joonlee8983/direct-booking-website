@@ -9,3 +9,6 @@ export type { HealthResponse } from "./health.service";
 
 export { dbHealthService } from "./db-health.service";
 export type { DbHealthResponse } from "./db-health.service";
+
+export { authService } from "./auth.service";
+export type { AuthUser, AuthError } from "./auth.service";

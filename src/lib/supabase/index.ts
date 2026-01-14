@@ -3,6 +3,7 @@
  * Central export point for Supabase clients and types.
  */
 
-export { supabase } from "./client";
-export { createServerClient } from "./server";
+export { createClient } from "./client";
+export { createServerClient, createServiceClient } from "./server";
+export { updateSession } from "./middleware";
 export type { Database, HealthCheck } from "./types";

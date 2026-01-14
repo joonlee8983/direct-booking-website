@@ -19,7 +19,7 @@ class DbHealthService {
    */
   async checkHealth(): Promise<DbHealthResponse> {
     try {
-      const supabase = createServerClient();
+      const supabase = await createServerClient();
 
       // Insert a health check record
       const { error: insertError } = await supabase
