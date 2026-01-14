@@ -6,3 +6,6 @@
 
 export { healthService } from "./health.service";
 export type { HealthResponse } from "./health.service";
+
+export { dbHealthService } from "./db-health.service";
+export type { DbHealthResponse } from "./db-health.service";
