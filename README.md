@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Direct Booking Website
+
+A production-ready web application foundation built with Next.js, Supabase, and Vercel.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Database**: Supabase Postgres
+- **Auth**: Supabase Auth
+- **Styling**: Tailwind CSS
+- **Deployment**: Vercel
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── api/                # API routes
+│   │   ├── health/         # Health check endpoint
+│   │   ├── db-health/      # Database health endpoint
+│   │   └── me/             # Protected user endpoint
+│   └── auth/               # Authentication pages
+│       ├── login/          # Login/signup page
+│       └── callback/       # OAuth callback handler
+├── components/             # React components
+├── lib/                    # Shared libraries
+│   └── supabase/           # Supabase client configuration
+└── services/               # Business logic layer (modular, extractable)
+```
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm
+- Supabase account
+
+### Setup
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Copy environment variables:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. Fill in your Supabase credentials in `.env.local`
+
+5. Run the database migration in Supabase SQL Editor:
+   ```sql
+   -- See: supabase/migrations/001_health_checks.sql
+   ```
+
+6. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## API Endpoints
+
+| Endpoint | Description | Auth Required |
+|----------|-------------|---------------|
+| `GET /api/health` | Application health check | No |
+| `GET /api/db-health` | Database connectivity check | No |
+| `GET /api/me` | Get current user info | Yes |
+
+## Environment Variables
+
+| Variable | Description | Exposed to Client |
+|----------|-------------|-------------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Yes |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | Yes |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key | **No** |
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project is configured for Vercel deployment:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push to GitHub
+2. Import project in Vercel
+3. Set environment variables in Vercel dashboard
+4. Deploy
 
-## Learn More
+## Architecture Notes
 
-To learn more about Next.js, take a look at the following resources:
+The `/src/services/` directory contains a modular service layer that encapsulates business logic. This design allows:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Easy extraction to a separate backend if needed
+- Clear separation of concerns
+- Testable business logic
+- Framework-agnostic code
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Private
